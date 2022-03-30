@@ -39,3 +39,51 @@ print("--------------------")
 football_points(5, 0, 2) # 15
 print("--------------------")
 football_points(0, 0, 1) # 0
+
+
+#            Convert cents into change
+
+def convert(cents):
+	money = {
+		"dollar": 0,
+		"quarter": 0,
+		"dime": 0,
+		"nickel": 0,
+		"penny": 0,
+	}
+
+	while cents > 0:
+		if cents >= 100:
+			money["dollar"] += 1
+			cents -= 100
+		elif cents >= 25:
+			money["quarter"] += 1
+			cents -= 25
+		elif cents >= 10:
+			money["dime"] += 1
+			cents -= 10
+		elif cents >= 5:
+			money["nickel"] += 1
+			cents -= 5
+		elif cents >= 1:
+			money["penny"] += 1
+			cents -= 1
+		# print(f"cents = {cents}")
+
+	answer = []
+	for x in money:
+		if money[x] == 1:
+			answer.append(f"1 {x}")
+		elif money[x] > 1:
+			if x == "penny":
+				answer.append(f"{money[x]} pennies")
+			else:
+				answer.append(f"{money[x]} {x}s")
+
+	return answer
+	
+print(57, convert(57))
+print(24, convert(24))
+print(111, convert(111))
+print(99, convert(99))
+print(326, convert(326))
