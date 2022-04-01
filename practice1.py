@@ -128,3 +128,134 @@ print(calculator(4, "/", 2), "== 2") # 2
 print(calculator(4, "/", 0), "== Can't divide by 0!") # 2
 print(calculator(6, "x", 2), "== Invalid operator!") # 2
 print(calculator(10, "/", 3), "== 3.333") # 2
+
+#										3/31/22
+
+"""
+Get the Area of a Country
+Create a function that takes a country's name and its area as arguments and returns the area of the country's proportion of the total world's landmass.
+
+Examples
+area_of_country("Russia", 17098242) ➞ "Russia is 11.48% of the total world's landmass"
+
+area_of_country("USA", 9372610), "USA is 6.29% of the total world's landmass"
+
+area_of_country("Iran", 1648195) ➞ "Iran is 1.11% of the total world's landmass"
+Notes
+The total world's landmass is 148,940,000 [Km^2]
+Round the result to two decimal places.
+If you get stuck on a challenge, find help in the Resources tab.
+
+"""
+
+def area_of_country(name, area):
+	world = 148940000
+	percent = round(area / world, 4) * 100
+	return f"{name} is {percent}% of the total world's landmass"
+	# return f"{name} is {round(area/148940000, 4)*100}% of the total world's landmass"
+
+
+
+print(area_of_country("Russia", 17098242)) # "Russia is 11.48% of the total world's landmass"
+print(area_of_country("USA", 9372610)) # "USA is 6.29% of the total world's landmass"
+print(area_of_country("Iran", 1648195)) # "Iran is 1.11% of the total world's landmass"
+
+"""
+Calculate the Profit
+You work for a manufacturer, and have been asked to calculate the total profit made on the sales of a product. You are given a dictionary containing the cost price per unit (in dollars), sell price per unit (in dollars), and the starting inventory. Return the total profit made, rounded to the nearest dollar.
+
+Examples
+profit({
+  "cost_price": 32.67,
+  "sell_price": 45.00,
+  "inventory": 1200
+}) ➞ 14796
+
+profit({
+  "cost_price": 225.89,
+  "sell_price": 550.00,
+  "inventory": 100
+}) ➞ 32411
+
+profit({
+  "cost_price": 2.77,
+  "sell_price": 7.95,
+  "inventory": 8500
+}) ➞ 44030
+Notes
+Assume all inventory has been sold.
+Profit = Total Sales - Total Cost
+"""
+
+def profit(info):
+	cost = info["cost_price"] * info["inventory"]
+	# print(cost)
+	gross = info["sell_price"] * info["inventory"]
+	# print(gross)
+	return gross - cost
+	# return (info["sell_price"] * info["inventory"]) - (info["cost_price"] * info["inventory"])
+
+print(profit({
+  "cost_price": 32.67,
+  "sell_price": 45.00,
+  "inventory": 1200
+})) # 14796
+
+print(profit({
+  "cost_price": 225.89,
+  "sell_price": 550.00,
+  "inventory": 100
+})) # 32411
+
+print(profit({
+  "cost_price": 2.77,
+  "sell_price": 7.95,
+  "inventory": 8500
+})) # 44030
+
+"""
+Simple OOP Calculator
+
+Create methods for the Calculator class that can do the following:
+
+Add two numbers.
+Subtract two numbers.
+Multiply two numbers.
+Divide two numbers.
+Examples
+calculator = Calculator()
+
+calculator.add(10, 5) ➞ 15
+
+calculator.subtract(10, 5) ➞ 5
+
+calculator.multiply(10, 5) ➞ 50
+
+calculator.divide(10, 5) ➞ 2
+Notes
+The methods should return the result of the calculation.
+Don't worry about needing to handle division by zero errors.
+See the Resources tab for some helpful tutorials on Python classes.
+"""
+class Calculator:
+	def _init_(self):
+		pass
+
+	def add(self, num1, num2):
+		return num1 + num2
+
+	def subtract(self, num1, num2):
+		return num1 - num2
+
+	def multiply(self, num1, num2):
+		return num1 * num2
+
+	def divide(self, num1, num2):
+		return num1 / num2
+
+		
+calculator = Calculator()
+print(calculator.add(10, 5))# 15
+print(calculator.subtract(10, 5)) # 5
+print(calculator.multiply(10, 5))# 50
+print(calculator.divide(10, 5)) # 2
