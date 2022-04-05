@@ -259,3 +259,36 @@ print(calculator.add(10, 5))# 15
 print(calculator.subtract(10, 5)) # 5
 print(calculator.multiply(10, 5))# 50
 print(calculator.divide(10, 5)) # 2
+
+#								4/5/22
+"""
+Scottish Screaming
+A strong Scottish accent makes every vowel similar to an "e", so you should replace every vowel with an "e". Additionally, it is being screamed, so it should be in block capitals.
+
+Create a function that takes a string and returns a string.
+
+Examples
+to_scottish_screaming("hello world") ➞ "HELLE WERLD"
+
+to_scottish_screaming("Mr. Fox was very naughty") ➞ "MR. FEX WES VERY NEEGHTY"
+
+to_scottish_screaming("Butterflies are beautiful!") ➞ "BETTERFLEES ERE BEEETEFEL!"
+
+Make sure to include all punctuation that is in the original string.
+You don't need any more namespaces than are already given.
+"""
+
+# need to import regex module to use regex
+import re
+
+def to_scottish_screaming(txt):
+	#use regex to substitute all vowels with "E" in given string
+	str = re.sub("[aiouy]", "E", txt)
+	# return the new string in all uppercase
+	return str.upper()
+	#shorter version:
+	return re.sub("[aiouy]", "E", txt).upper()
+	
+print(to_scottish_screaming("hello world")) # "HELLE WERLD"
+print(to_scottish_screaming("Mr. Fox was very naughty")) # "MR. FEX WES VERY NEEGHTY"
+print(to_scottish_screaming("Butterflies are beautiful!")) # "BETTERFLEES ERE BEEETEFEL!"
