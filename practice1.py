@@ -259,3 +259,157 @@ print(calculator.add(10, 5))# 15
 print(calculator.subtract(10, 5)) # 5
 print(calculator.multiply(10, 5))# 50
 print(calculator.divide(10, 5)) # 2
+
+#								4/5/22
+"""
+Scottish Screaming
+A strong Scottish accent makes every vowel similar to an "e", so you should replace every vowel with an "e". Additionally, it is being screamed, so it should be in block capitals.
+
+Create a function that takes a string and returns a string.
+
+Examples
+to_scottish_screaming("hello world") ➞ "HELLE WERLD"
+
+to_scottish_screaming("Mr. Fox was very naughty") ➞ "MR. FEX WES VERY NEEGHTY"
+
+to_scottish_screaming("Butterflies are beautiful!") ➞ "BETTERFLEES ERE BEEETEFEL!"
+
+Make sure to include all punctuation that is in the original string.
+You don't need any more namespaces than are already given.
+"""
+
+# need to import regex module to use regex
+import re
+
+def to_scottish_screaming(txt):
+	#use regex to substitute all vowels with "E" in given string
+	str = re.sub("[aiouy]", "E", txt)
+	# return the new string in all uppercase
+	return str.upper()
+	#shorter version:
+	return re.sub("[aiouy]", "E", txt).upper()
+	
+print(to_scottish_screaming("hello world")) # "HELLE WERLD"
+print(to_scottish_screaming("Mr. Fox was very naughty")) # "MR. FEX WES VERY NEEGHTY"
+print(to_scottish_screaming("Butterflies are beautiful!")) # "BETTERFLEES ERE BEEETEFEL!"
+
+"""
+Finding Adjacent Nodes
+
+A graph is a set of nodes and edges that connect those nodes.
+
+Graph Example
+
+There are two types of graphs; directed and undirected. In an undirected graph, the edges between nodes have no particular direction (like a two-way street) whereas in a directed graph, each edge has a direction associated with it (like a one-way street).
+
+For two nodes in a graph to be considered adjacent to one another, there must be an edge between them. In the example given above, nodes 0 and 1 are adjacent, but nodes 0 and 2 are not.
+
+We can encode graphs using an adjacency matrix. An adjacency matrix for a graph with "n" nodes is an "n * n" matrix where the entry at row "i" and column "j" is a 0 if nodes "i" and "j" are not adjacent, and 1 if nodes "i" and "j" are adjacent.
+
+For the example above, the adjacency matrix would be as follows:
+
+[
+  [ 0, 1, 0, 0 ],
+  [ 1, 0, 1, 1 ],
+  [ 0, 1, 0, 1 ],
+  [ 0, 1, 1, 0 ]
+]
+A one indicates that a connection is true and a zero indicates a connection is false.
+
+Here is how the above model might be written out:
+
+On the first row, node 0 does not connect to itself, but it does connect to node 1. It does not connect to node 2 or node 3. The row is written as 0, 1, 0, 0.
+On the second row, node 1 connects to node 0, node 2 and node 3, but it does not connect to itself. The row is written as 1, 0, 1, 1.
+On the third row, node 2 does not connect to node 0, but it does connect to node 1, does not connect to itself, and it does connect to node 3. The row is written as 0, 1, 0, 1
+On the fourth row, node 3 does not connect to node 0, but it does connect to node 1 and node 2. It does not connect to itself. The row is written as 0, 1, 1, 0.
+Your task is to determine if two nodes are adjacent in an undirected graph when given the adjacency matrix and the two nodes.
+
+Examples
+Graph Example
+
+Adjacency Matrix:
+
+[
+  [ 0, 1, 0, 0 ],
+  [ 1, 0, 1, 1 ],
+  [ 0, 1, 0, 1 ],
+  [ 0, 1, 1, 0 ]
+]
+Nodes 0,1 should return True.
+Nodes 0,2 should return False.
+Graph Example 2
+
+[
+  [ 0, 1, 0, 1, 1 ],
+  [ 1, 0, 1, 0, 0 ],
+  [ 0, 1, 0, 1, 0 ],
+  [ 1, 0, 1, 0, 1 ],
+  [ 1, 0, 0, 1, 0 ]
+]
+Nodes 0,3 should return True.
+Nodes 1,4 should return False.
+Notes
+Graphs may have between 0 and 25,000 nodes.
+Time Limit: 100 milliseconds.
+"""
+
+def is_adjacent(matrix, node1, node2):
+	# check what the matrix node with the index of given "node1", with node index of given "node2" is connected. Return boolean of value found(1 = true, 0 = false)
+	# print("matrix[node1][node2]", matrix[node1][node2])
+	return bool(matrix[node1][node2])
+
+matrix1 = [
+  [ 0, 1, 0, 0 ],
+  [ 1, 0, 1, 1 ],
+  [ 0, 1, 0, 1 ],
+  [ 0, 1, 1, 0 ]
+]
+print(is_adjacent(matrix1, 0, 1), "should be true") #true
+print(is_adjacent(matrix1, 0, 2), "should be false") #false
+print(is_adjacent(matrix1, 1, 3), "should be true") #true
+print(is_adjacent(matrix1, 0, 3), "should be false") #false
+print(is_adjacent(matrix1, 2, 0), "should be false") #false
+print(is_adjacent(matrix1, 2, 1), "should be true") #true
+
+matrix2 = [
+  [ 0, 1, 0, 1, 1 ],
+  [ 1, 0, 1, 0, 0 ],
+  [ 0, 1, 0, 1, 0 ],
+  [ 1, 0, 1, 0, 1 ],
+  [ 1, 0, 0, 1, 0 ]
+]
+
+print(is_adjacent(matrix2, 0, 3), "should be true") #true
+print(is_adjacent(matrix2, 1, 4), "should be false") #false
+print(is_adjacent(matrix2, 4, 3), "should be true") #true
+print(is_adjacent(matrix2, 3, 1), "should be false") #false
+
+"""
+Date Format
+Create a function that converts a date formatted as MM/DD/YYYY to YYYYDDMM.
+
+Examples
+format_date("11/12/2019") ➞ "20191211"
+
+format_date("12/31/2019") ➞ "20193112"
+
+format_date("01/15/2019") ➞ "20191501"
+Notes
+Return value should be a string.
+"""
+def format_date(date):
+	# separate date numbers at each "/"
+	arr = date.split("/")
+	# assign to variables for clarity
+	day = arr[1]
+	month = arr[0]
+	year = arr[2]
+	# return rearranged variables as string
+	return f"{year}{day}{month}"
+	
+print(format_date("11/12/2019"), "should be 20191211") # "20191211"
+print(format_date("11/12/2019") == "20191211")
+print(format_date("12/31/2019"), "should be 20193112") # "20193112"
+print(format_date("12/31/2019") == "20193112")
+print(format_date("01/15/2019"), "should be 20191501") # "20191501"
+print(format_date("01/15/2019") == "20191501")
