@@ -294,6 +294,8 @@ print(to_scottish_screaming("Mr. Fox was very naughty")) # "MR. FEX WES VERY NEE
 print(to_scottish_screaming("Butterflies are beautiful!")) # "BETTERFLEES ERE BEEETEFEL!"
 
 """
+Finding Adjacent Nodes
+
 A graph is a set of nodes and edges that connect those nodes.
 
 Graph Example
@@ -381,3 +383,33 @@ print(is_adjacent(matrix2, 0, 3), "should be true") #true
 print(is_adjacent(matrix2, 1, 4), "should be false") #false
 print(is_adjacent(matrix2, 4, 3), "should be true") #true
 print(is_adjacent(matrix2, 3, 1), "should be false") #false
+
+"""
+Date Format
+Create a function that converts a date formatted as MM/DD/YYYY to YYYYDDMM.
+
+Examples
+format_date("11/12/2019") ➞ "20191211"
+
+format_date("12/31/2019") ➞ "20193112"
+
+format_date("01/15/2019") ➞ "20191501"
+Notes
+Return value should be a string.
+"""
+def format_date(date):
+	# separate date numbers at each "/"
+	arr = date.split("/")
+	# assign to variables for clarity
+	day = arr[1]
+	month = arr[0]
+	year = arr[2]
+	# return rearranged variables as string
+	return f"{year}{day}{month}"
+	
+print(format_date("11/12/2019"), "should be 20191211") # "20191211"
+print(format_date("11/12/2019") == "20191211")
+print(format_date("12/31/2019"), "should be 20193112") # "20193112"
+print(format_date("12/31/2019") == "20193112")
+print(format_date("01/15/2019"), "should be 20191501") # "20191501"
+print(format_date("01/15/2019") == "20191501")
