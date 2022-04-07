@@ -413,3 +413,84 @@ print(format_date("12/31/2019"), "should be 20193112") # "20193112"
 print(format_date("12/31/2019") == "20193112")
 print(format_date("01/15/2019"), "should be 20191501") # "20191501"
 print(format_date("01/15/2019") == "20191501")
+
+#								4/6/22
+
+"""
+Pluralize
+
+Given a list of words in the singular form, return a set of those words in the plural form if they appear more than once in the list.
+
+Examples
+pluralize(["cow", "pig", "cow", "cow"]) ➞ { "cows", "pig" }
+
+pluralize(["table", "table", "table"]) ➞ { "tables" }
+
+pluralize(["chair", "pencil", "arm"]) ➞ { "chair", "pencil", "arm" }
+Notes
+This is an oversimplification of the English language so no edge cases will appear.
+Only focus on whether or not to add an s to the ends of words.
+All tests will be valid.
+"""
+
+def pluralize(lst):
+	# solution 1
+	print(lst)
+	mySet = set(lst)
+	ans = []
+	for x in mySet:
+		print(lst.count(x))
+		if lst.count(x) > 1:
+			ans.append(f"{lst.count(x)} {x}s")
+		else:
+			ans.append(x)
+	print(ans)
+	return ans
+	# solution 2
+	return set([f"{lst.count(x)} {x}s" if lst.count(x) != 1 else x for x in lst])
+
+print(pluralize(["cow", "pig", "cow", "cow"])) # { "3 cows", "pig" }
+print(pluralize(["table", "table", "table"])) # { "3 tables" }
+print(pluralize(["chair", "pencil", "arm"])) # { "chair", "pencil", "arm" }
+
+"""
+Majority Vote
+Create a function that returns the majority vote in a list. A majority vote is an element that occurs > N/2 times in a list (where N is the length of the list).
+
+Examples
+majority_vote(["A", "A", "B"]) ➞ "A"
+
+majority_vote(["A", "A", "A", "B", "C", "A"]) ➞ "A"
+
+majority_vote(["A", "B", "B", "A", "C", "C"]) ➞ None
+Notes
+The frequency of the majority element must be strictly greater than 1/2.
+If there is no majority element, return None.
+If the list is empty, return None.
+"""
+def majority_vote(lst):
+	# solution 1
+	dict = {}
+	count = 0
+	highest = None
+	if len(lst) == 0:
+		return None
+	for x in set(lst):
+		dict[x] = lst.count(x)
+		if dict[x] > count:
+			count = dict[x]
+			highest = x
+
+	return highest if count > (len(lst) / 2) else None
+	# solution 2
+	for x in set(lst):
+		if lst.count(x) > len(lst) / 2:
+			return x
+
+print(majority_vote(["A", "A", "B"])) # "A"
+print(majority_vote(["A", "A", "A", "B", "C", "A"])) # "A"
+print(majority_vote(["A", "B", "B", "A", "C", "C"])) # None
+print(majority_vote(["C", "B", "B", "A", "C", "C"])) # None
+print(majority_vote([])) # "None"
+print(majority_vote(["C", "C", "B", "A", "C", "C", "B"])) # C
+
