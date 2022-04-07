@@ -413,3 +413,42 @@ print(format_date("12/31/2019"), "should be 20193112") # "20193112"
 print(format_date("12/31/2019") == "20193112")
 print(format_date("01/15/2019"), "should be 20191501") # "20191501"
 print(format_date("01/15/2019") == "20191501")
+
+#								4/6/22
+
+"""
+Pluralize
+
+Given a list of words in the singular form, return a set of those words in the plural form if they appear more than once in the list.
+
+Examples
+pluralize(["cow", "pig", "cow", "cow"]) ➞ { "cows", "pig" }
+
+pluralize(["table", "table", "table"]) ➞ { "tables" }
+
+pluralize(["chair", "pencil", "arm"]) ➞ { "chair", "pencil", "arm" }
+Notes
+This is an oversimplification of the English language so no edge cases will appear.
+Only focus on whether or not to add an s to the ends of words.
+All tests will be valid.
+"""
+
+def pluralize(lst):
+	# solution 1
+	print(lst)
+	mySet = set(lst)
+	ans = []
+	for x in mySet:
+		print(lst.count(x))
+		if lst.count(x) > 1:
+			ans.append(f"{lst.count(x)} {x}s")
+		else:
+			ans.append(x)
+	print(ans)
+	return ans
+	# solution 2
+	return set([f"{lst.count(x)} {x}s" if lst.count(x) != 1 else x for x in lst])
+
+print(pluralize(["cow", "pig", "cow", "cow"])) # { "3 cows", "pig" }
+print(pluralize(["table", "table", "table"])) # { "3 tables" }
+print(pluralize(["chair", "pencil", "arm"])) # { "chair", "pencil", "arm" }
